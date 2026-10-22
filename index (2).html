@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fabio Saglio – BI & Data Analytics</title>
+<meta name="description" content="Fabio Saglio, BI & data analyst in Milan. Projects rebuilt on synthetic data, with short walkthroughs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#F6F5FB;--surface:#FFF;--ink:#17142B;--muted:#625E80;--line:#E3E0F0;--accent:#5B4BFF;--accent-ink:#FFF;--mint:#13875F;--code-bg:#17142B;--code-ink:#ECEAFF;--kw:#A99FFF;--str:#7FE0B5;--com:#8A86A8;
+--sans:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0F0E1A;--surface:#181628;--ink:#F1EFFF;--muted:#9A96B8;--line:#2B2848;--accent:#8F84FF;--accent-ink:#0F0E1A;--mint:#4FD6A3;--code-bg:#0A0913}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:60rem;margin:0 auto;padding:0 1.5rem}
+header.top{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:space-between;align-items:center;padding:1.5rem 0}
+.logo{font-weight:800;letter-spacing:-.02em;text-decoration:none}
+nav{display:flex;flex-wrap:wrap}
+nav a{margin-left:1.25rem;text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+nav a[aria-current=page]{color:var(--ink);box-shadow:0 2px 0 var(--accent)}
+.js [data-view]{display:none}.js [data-view].on{display:block}
+.hero{padding:clamp(2.5rem,8vw,5.5rem) 0 clamp(2rem,5vw,3rem)}
+h1{font-size:clamp(2.6rem,9vw,6rem);line-height:.98;letter-spacing:-.045em;font-weight:800;margin:0 0 1.5rem;max-width:12ch}
+.kick{font:500 .9rem var(--mono);color:var(--accent);margin:0 0 1rem}
+.sub{font-size:clamp(1.1rem,2.4vw,1.35rem);color:var(--muted);max-width:34rem;margin:0 0 2rem}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-block;padding:.7rem 1.25rem;border-radius:999px;border:1.5px solid var(--ink);text-decoration:none;font-weight:600;transition:transform .15s}
+.btn.fill{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:hover{transform:translateY(-2px)}
+h2{font-size:1.1rem;font-weight:600;color:var(--muted);margin:1rem 0 1rem}
+.projects{border-top:1.5px solid var(--ink)}
+.proj{display:grid;grid-template-columns:1fr;gap:.35rem 2rem;width:100%;text-align:left;background:none;border:0;border-bottom:1.5px solid var(--line);color:inherit;font:inherit;padding:1.6rem .25rem;cursor:pointer;transition:background .2s,padding .2s}
+.proj:hover{background:var(--surface);padding-left:1rem}
+.proj .t{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.proj .d{color:var(--muted);max-width:36rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.tag{font:500 .78rem var(--mono);padding:.15rem .55rem;border-radius:6px;background:var(--surface);border:1px solid var(--line)}
+.st{font:500 .75rem var(--mono);padding:.1rem .5rem;border-radius:6px;border:1px solid var(--accent);color:var(--accent)}
+.state{font:500 .8rem var(--mono);color:var(--accent)}
+.imp{display:grid;gap:.25rem;color:var(--muted);font-size:.95rem}.imp b{color:var(--ink);font-weight:600}
+@media(min-width:760px){.proj{grid-template-columns:1.1fr 1fr}.proj .t{grid-row:span 2}.tags{margin-top:.2rem}}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1rem}
+.chip{font:600 .85rem var(--sans);padding:.35rem .9rem;border-radius:999px;border:1.5px solid var(--line);background:none;color:inherit;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.note{margin:2rem 0 0;padding:1rem 1.25rem;border-radius:14px;background:var(--surface);border:1px solid var(--line);color:var(--muted);font-size:.95rem}
+footer{padding:4rem 0 3rem;color:var(--muted)}footer a{color:var(--ink)}
+.grid{display:grid;gap:1rem}
+@media(min-width:760px){.c3{grid-template-columns:repeat(3,1fr)}}
+.card{padding:1.1rem 1.2rem;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.card small{display:block;font:500 .78rem var(--mono);color:var(--accent);margin-bottom:.3rem}
+.card h3{margin:0 0 .3rem;font-size:1.1rem;letter-spacing:-.02em;line-height:1.2}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.card.link{display:block;text-decoration:none;transition:transform .15s,border-color .15s}
+.card.link:hover{transform:translateY(-3px);border-color:var(--accent)}
+.card.link h3{font-size:1.3rem}
+/* roadmap */
+.tl{list-style:none;margin:1.5rem 0 0;padding:0 0 0 2.6rem;position:relative}
+.tl::before{content:"";position:absolute;left:1rem;top:.5rem;bottom:.5rem;width:2px;background:var(--line)}
+.tl li{position:relative;margin-bottom:.7rem}.tl li.hide{display:none}
+.tl .dot{position:absolute;left:-2.6rem;top:.8rem;width:2rem;height:2rem;border-radius:50%;background:var(--bg);border:2px solid var(--accent);font:700 .8rem/1.7rem var(--mono);text-align:center;color:var(--accent)}
+.tl li[data-t=edu] .dot{border-color:var(--mint);color:var(--mint)}
+.tl li[data-t=cert] .dot{border-style:dashed;border-color:var(--muted);color:var(--muted)}
+.tn{width:100%;text-align:left;font:inherit;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:.8rem 1rem;cursor:pointer}
+.tn:hover,.tn[aria-expanded=true]{border-color:var(--accent)}
+.tn small{display:block;font:500 .78rem var(--mono);color:var(--accent)}
+.tn b{display:block;font-size:1.05rem;line-height:1.3}
+.tn .sub{display:block;color:var(--muted);font-size:.95rem}
+.tn .more{display:none;margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--line);font-size:.95rem}
+.tn[aria-expanded=true] .more{display:block}
+/* deck */
+dialog{width:min(62rem,94vw);height:min(40rem,90vh);padding:0;border:1.5px solid var(--ink);border-radius:20px;background:var(--bg);color:var(--ink);overflow:hidden}
+dialog::backdrop{background:rgba(15,14,26,.6);backdrop-filter:blur(4px)}
+.deck{display:flex;flex-direction:column;height:100%}
+.bar,.ctrl{display:flex;justify-content:space-between;align-items:center;padding:.85rem 1.25rem}
+.bar{border-bottom:1px solid var(--line)}.ctrl{border-top:1px solid var(--line)}
+.bar b{font-weight:800;letter-spacing:-.02em}
+.x{background:none;border:1.5px solid var(--line);border-radius:999px;color:inherit;font:inherit;padding:.25rem .8rem;cursor:pointer}
+.x:hover{border-color:var(--ink)}
+.stage{flex:1;overflow:hidden}
+.track{display:flex;height:100%;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.slide{flex:0 0 100%;height:100%;overflow:auto;padding:1.75rem clamp(1.25rem,4vw,3rem)}
+.slide h3{font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.05;letter-spacing:-.035em;font-weight:800;margin:0 0 1rem;max-width:20ch}
+.slide p{margin:.5rem 0;max-width:40rem}
+.muted{color:var(--muted)}
+.dots{display:flex;gap:.4rem}
+.dots i{width:.55rem;height:.55rem;border-radius:50%;background:var(--line);transition:.2s}
+.dots i.on{background:var(--accent);width:1.6rem;border-radius:999px}
+.nb{background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:.5rem 1.1rem;font:600 .95rem var(--sans);cursor:pointer}
+.nb[disabled]{opacity:.25;cursor:default}
+.flow{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.25rem 0}
+.node{flex:1 1 9rem;padding:.9rem 1rem;border-radius:14px;background:var(--surface);border:1.5px solid var(--line);opacity:.35;transform:translateY(6px);transition:opacity .4s,transform .4s,border-color .4s}
+.slide.act .node{opacity:1;transform:none;border-color:var(--accent)}
+.slide.act .node:nth-child(2){transition-delay:.15s}.slide.act .node:nth-child(3){transition-delay:.3s}.slide.act .node:nth-child(4){transition-delay:.45s}.slide.act .node:nth-child(5){transition-delay:.6s}
+.node b{display:block;font-weight:800}.node span{font-size:.88rem;color:var(--muted)}
+pre{margin:1rem 0;padding:1rem 1.15rem;border-radius:14px;background:var(--code-bg);color:var(--code-ink);font:400 .82rem/1.65 var(--mono);overflow:auto}
+.kw{color:var(--kw)}.str{color:var(--str)}.com{color:var(--com)}
+.rules{display:grid;gap:.5rem;margin:1rem 0}
+.rule{display:flex;justify-content:space-between;gap:1rem;padding:.6rem .9rem;border-radius:10px;background:var(--surface);border:1px solid var(--line);font-size:.95rem}
+.tbl{width:100%;border-collapse:collapse;font:400 .88rem var(--mono);margin:1rem 0}
+.tbl th,.tbl td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--line)}
+.tbl th{color:var(--muted);font-weight:500}
+.pill{display:inline-block;padding:.1rem .6rem;border-radius:999px;font:600 .78rem var(--sans)}
+.p-on{background:var(--accent);color:var(--accent-ink)}.p-st{border:1.5px solid var(--ink)}.p-om{background:var(--mint);color:var(--bg)}
+.two{display:grid;gap:1rem}
+@media(min-width:720px){.two{grid-template-columns:1fr 1fr}}
+.box{padding:1rem 1.15rem;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
+.box b{display:block;margin-bottom:.3rem}.box ul{margin:0;padding-left:1.1rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.node{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a class="logo" href="#/">Fabio Saglio</a>
+  <nav aria-label="Main"><a href="#/" data-v="Home">Home</a><a href="#/Projects" data-v="Projects">Projects</a><a href="#/Roadmap" data-v="Roadmap">Roadmap</a><a href="Fabio_Saglio_CV.pdf">CV</a></nav>
+</header>
+
+<main id="top">
+<section data-view="home" class="on">
+  <div class="hero">
+    <p class="kick">Business Intelligence · Commercial Analytics · Automation</p>
+    <h1>We can turn complex into simple.</h1>
+    <p class="sub">I turn complex retail data into reliable analytics, repeatable processes and clearer business decisions. Currently in BI and Data Analytics at EssilorLuxottica, in Milan.</p>
+    <p class="tags" style="margin:0 0 2rem"><span class="tag">SQL: analytical logic</span><span class="tag">Python: automation</span><span class="tag">Power BI: decision support</span></p>
+    <div class="cta">
+      <a class="btn fill" href="#/projects">See the projects</a>
+      <a class="btn" href="Fabio_Saglio_CV.pdf">Download CV</a>
+      <a class="btn" href="https://www.linkedin.com/in/fabio-saglio/">LinkedIn</a>
+    </div>
+  </div>
+  <div class="grid c3">
+    <a class="card link" href="#/projects"><small>5 walkthroughs</small><h3>Projects</h3><p>Rebuilt on synthetic data: SQL, Python, Power Query, AI testing. Plus how I work.</p></a>
+    <a class="card link" href="#/roadmap"><small>2021 → now</small><h3>Roadmap</h3><p>Work, study and certifications on one timeline. Click any step.</p></a>
+    <div class="card"><small>target roles</small><h3>BI Analyst, Data Analyst, Analytics Engineer</h3><p>Stack: SQL, Python, Power BI, Power Query, DAX, Power Automate, Databricks.</p></div>
+  </div>
+</section>
+
+<section data-view="projects" id="projects">
+  <h2>Projects</h2>
+  <div class="chips" role="group" aria-label="Filter projects"><button class="chip" aria-pressed="true" data-f="all">All</button><button class="chip" aria-pressed="false" data-f="auto">Automation</button><button class="chip" aria-pressed="false" data-f="sql">SQL &amp; Analytics</button><button class="chip" aria-pressed="false" data-f="ai">AI &amp; Data Quality</button></div>
+  <div class="projects">
+    <button class="proj" data-deck="how" data-cat="how">
+      <span class="t">How I work</span>
+      <span class="d">Five steps from a business question to a process that repeats without me.</span>
+      <span class="tags"><span class="tag">Method</span><span class="state">open walkthrough</span></span>
+    </button>
+    <button class="proj" data-deck="sql" data-cat="sql">
+      <span class="t">Which channel sells what?</span>
+      <span class="imp"><span><b>Problem</b> Channel data split across separate extracts.</span><span><b>My part</b> Designed the classification logic, first in Power Query, then rebuilt in SQL with CTEs.</span><span><b>Outcome</b> One table planners can filter by channel, month and country.</span></span>
+      <span class="tags"><span class="st">Completed</span><span class="tag">SQL</span><span class="tag">CTE</span><span class="tag">CASE WHEN</span><span class="state">open walkthrough</span></span>
+    </button>
+    <button class="proj" data-deck="master" data-cat="auto">
+      <span class="t">Master data that checks itself</span>
+      <span class="imp"><span><b>Problem</b> Store files with shifting headers, duplicate IDs and unknown brands.</span><span><b>My part</b> Built the Python pipeline: validation, standardization, history comparison and alerts.</span><span><b>Outcome</b> Errors stopped before they spread, and changes tracked run to run.</span></span>
+      <span class="tags"><span class="st">Completed</span><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Parquet</span><span class="state">open walkthrough</span></span>
+    </button>
+    <button class="proj" data-deck="markdown" data-cat="auto">
+      <span class="t">From five Excel files to one refresh</span>
+      <span class="imp"><span><b>Problem</b> A markdown workflow spread across five manual files.</span><span><b>My part</b> Rebuilt it as one Power Query pipeline joining stock, product and finance sources.</span><span><b>Outcome</b> Updating means loading the files and hitting refresh.</span></span>
+      <span class="tags"><span class="st">Completed</span><span class="tag">Power Query</span><span class="tag">ETL</span><span class="tag">M</span><span class="state">open walkthrough</span></span>
+    </button>
+    <button class="proj" data-deck="bot" data-cat="ai">
+      <span class="t">Teaching an AI analyst two codes</span>
+      <span class="imp"><span><b>Problem</b> A text-to-SQL chatbot that confused two similar definitions.</span><span><b>My part</b> Tested real requests, diagnosed the SQL and rewrote the instructions.</span><span><b>Outcome</b> Far fewer wrong answers after retesting.</span></span>
+      <span class="tags"><span class="st">Ongoing</span><span class="tag">SQL</span><span class="tag">AI testing</span><span class="tag">Data quality</span><span class="state">open walkthrough</span></span>
+    </button>
+    <button class="proj" data-deck="lic" data-cat="sql">
+      <span class="t">Weekly licensing data, automated</span>
+      <span class="imp"><span><b>Problem</b> Eligibility data prepared by hand every week.</span><span><b>My part</b> Automated the SQL extraction with Python, eligibility rules and brand mapping.</span><span><b>Outcome</b> A consolidated file delivered to a shared folder every Monday.</span></span>
+      <span class="tags"><span class="st">Completed</span><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Scheduling</span><span class="state">open walkthrough</span></span>
+    </button>
+  </div>
+  <p class="note">Every project here is rebuilt on synthetic data with an invented schema. No company code, tables or numbers are shown.</p>
+</section>
+
+<section data-view="roadmap" id="roadmap">
+  <h2>Roadmap</h2>
+  <div class="chips" role="group" aria-label="Filter roadmap">
+    <button class="rchip chip" aria-pressed="true" data-r="all">All</button><button class="rchip chip" aria-pressed="false" data-r="work">Work</button><button class="rchip chip" aria-pressed="false" data-r="edu">Study</button><button class="rchip chip" aria-pressed="false" data-r="cert">Certifications</button>
+  </div>
+  <ol class="tl" id="tl"></ol>
+  <p class="note">Leadership and community: Nova member, mentor at Palestre Digitali, alumni mentor at JECO Pavia, mentee at Mentors4u.</p>
+</section>
+</main>
+
+<footer id="contact">
+  <p>Say hi: <a href="mailto:fabio.saglio01@universitadipavia.it">fabio.saglio01@universitadipavia.it</a> or find me on <a href="https://www.linkedin.com/in/fabio-saglio/">LinkedIn</a>.</p>
+</footer>
+</div>
+
+<dialog id="deck" aria-labelledby="dt">
+  <div class="deck">
+    <div class="bar"><b id="dt"></b><button class="x" id="close">Close</button></div>
+    <div class="stage"><div class="track" id="track"></div></div>
+    <div class="ctrl"><button class="nb" id="prev">Back</button><div class="dots" id="dots" aria-hidden="true"></div><button class="nb" id="next">Next</button></div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+var F=function(a){return '<div class="flow">'+a.map(function(n){return '<div class="node"><b>'+n[0]+'</b><span>'+n[1]+'</span></div>'}).join('')+'</div>'},
+R=function(a){return '<div class="rules">'+a.map(function(r){return '<div class="rule"><span>'+r[0]+'</span><code>'+r[1]+'</code></div>'}).join('')+'</div>'},
+B=function(t,l){return '<div class="box"><b>'+t+'</b>'+(Array.isArray(l)?'<ul>'+l.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>':l)+'</div>'},
+W=function(a,b){return '<div class="two">'+a+b+'</div>'},
+T=function(h,rows){return '<table class="tbl"><thead><tr>'+h.map(function(x){return '<th>'+x+'</th>'}).join('')+'</tr></thead><tbody>'+rows.map(function(r){return '<tr>'+r.map(function(x){return '<td>'+x+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table>'},
+pl=function(c,t){return '<span class="pill '+c+'">'+t+'</span>'},
+H=function(t){return '<h3>'+t+'</h3>'},P=function(t){return '<p>'+t+'</p>'},M=function(t){return '<p class="muted">'+t+'</p>'},C=function(t){return '<pre>'+t+'</pre>'};
+
+var D={
+how:{t:'How I work',s:[
+ H('Five steps, every time')+P('From a vague request to something that runs without me.')+F([['1 · Question','what decision is this for?'],['2 · Data','inspect it and its limits'],['3 · Rules','written so they can be tested'],['4 · Build','and validate'],['5 · Repeat','it runs without me']]),
+ H('1–2 · Question and data')+P('Before writing any code I check what the data can and cannot say.')+W(B('Example','Channel data sat in separate extracts. I first mapped what each one covered, then wrote the logic.'),B('Why','A clean query on the wrong question is still the wrong answer.')),
+ H('3 · Rules you can test')+R([['No online rows','Store only'],['Every row is online','Online only'],['Online plus something else','Omnichannel']])+M('From the channel project: three rules anyone can read and check.'),
+ H('4 · Build and validate')+W(B('In the pipeline',['Errors stop the run, warnings are logged.','Count rows after every join.','Never overwrite history on a failed run.']),B('In the AI analyst','Change one instruction, rerun the whole test set.')),
+ H('5 · Deliver something that repeats')+P('The goal is a process that does not depend on me being there.')+W(B('Example','Licensing data: rules written once, a consolidated file in the shared folder every Monday.'),B('Next','Tests, config files and alerts on what changed.'))
+]},
+sql:{t:'Channel classification in SQL',s:[
+ H('Where is each product actually sold?')+P('A retailer sells online and in stores. Planning teams need one answer per product, month and country: online only, store only, or both.')+W(B('Before','Channel data sits in separate extracts. Answering one question means cross-checking them by hand.'),B('Goal','One query, one table. Anyone can filter by class and country without touching raw data.'))+M('Fictional retailer, synthetic data.'),
+ H('The flow')+F([['Sources','channel sales, closed months'],['Window','last 3 closed fiscal months'],['Dedupe','one row per product, channel, month'],['Aggregate','count rows and online rows'],['Classify','CASE WHEN on the counts']])+M('Output: one row per product, month and country, with a channel class.'),
+ H('The logic')+R([['No online rows','Store only'],['Every row is online','Online only'],['Online plus something else','Omnichannel']])+C("WITH periods AS (\n  SELECT fiscal_month FROM closed_months\n  ORDER BY fiscal_month DESC LIMIT 3   -- last 3 closed periods\n),\nrecent AS (\n  SELECT DISTINCT s.upc, s.country, s.fiscal_month, s.channel   -- dedupe first\n  FROM channel_sales s\n  JOIN periods p ON p.fiscal_month = s.fiscal_month\n),\nagg AS (\n  SELECT upc, country, fiscal_month,\n         COUNT(*) AS n_rows,\n         SUM(CASE WHEN channel = 'EC' THEN 1 ELSE 0 END) AS n_ec\n  FROM recent\n  GROUP BY upc, country, fiscal_month\n)\nSELECT upc, country, fiscal_month,\n       CASE WHEN n_ec = 0      THEN 'Store only'\n            WHEN n_ec = n_rows THEN 'Online only'\n            ELSE 'Omnichannel' END AS channel_class\nFROM agg;")+M('After the dedupe, n_rows counts distinct channels per product, so the rule holds.'),
+ H('The output')+T(['upc','country','month','class'],[['0001-A','US','2026-07',pl('p-om','Omnichannel')],['0002-B','US','2026-07',pl('p-on','Online only')],['0003-C','CA','2026-07',pl('p-st','Store only')]])+M('Sample rows are invented.'),
+ H('What I took from it')+B('Watch out for',['Dedupe before counting, or the rule breaks.','The class shows presence in the data, not live availability.','Some product lines come from another source and need their own path.'])
+]},
+master:{t:'A master data pipeline that checks itself',s:[
+ H('Files change. The output should not.')+P('Store master data arrives as Excel files from several teams. Headers move, columns come and go, IDs get duplicated and unknown brands slip in.')+W(B('Before','Manual copy and paste into one file, easy to break quietly.'),B('Goal','Drop the files in a folder, run the script, get one trusted file and a list of what changed.'))+M('Synthetic files and an invented schema.'),
+ H('The flow')+F([['Ingest','find the header, keep needed columns'],['Validate','blocking errors vs warnings'],['Transform','normalize brands'],['Compare','diff against last snapshot'],['Output','Excel, snapshot, log, alert']])+P('If validation fails, the run stops. No output is written and history is not touched, so a bad file can never look like a good one.'),
+ H('Ingest and validate')+C("def find_header_row(raw, must_have=('store_id', 'brand')):\n    for i in range(min(len(raw), 30)):\n        cells = {str(c).strip().lower() for c in raw.iloc[i]}\n        if all(k in cells for k in must_have):\n            return i\n    raise ValueError('Header row not found')\n\ndef validate(df, known_brands):\n    errors, warnings = [], []\n    if df['store_id'].isna().any():\n        errors.append('Missing store IDs')\n    dups = df[df.duplicated('store_id', keep=False)]\n    if not dups.empty:\n        warnings.append(str(dups['store_id'].nunique()) + ' duplicate IDs, kept first')\n    unknown = set(df['brand']) - set(known_brands)\n    if unknown:\n        errors.append('Unmapped brands: ' + str(sorted(unknown)))\n    return errors, warnings")+M('Errors stop the run. Warnings are logged and sent in the alert. Simplified for the demo.'),
+ H('Track what changed')+C("prev = pd.read_parquet(last_snapshot)\nm = df.merge(prev, on='store_id', how='left', suffixes=('', '_old'), indicator=True)\nold = [c + '_old' for c in TRACKED]\nchanged = (m[TRACKED].values != m[old].values).any(axis=1)\n\ndf['flag_row'] = np.where(m['_merge'] == 'left_only', 'NEW',\n                 np.where(changed, 'CHANGED', 'SAME'))\ndf['run_date'] = today")+T(['store_id','brand','flag_row'],[['S-1001','Brand A',pl('p-st','SAME')],['S-1002','Brand B',pl('p-on','CHANGED')],['S-1003','Brand A',pl('p-om','NEW')]]),
+ H('What I took from it')+B('Watch out for',['Separate blocking errors from warnings early.','Never overwrite history on a failed run.','Read the header dynamically, not by position.'])
+]},
+markdown:{t:'From five Excel files to one refresh',s:[
+ H('A process that lived in five workbooks')+P('Markdown decisions depended on stock, product and finance files, stitched together with lookups. It worked until someone changed a column.')+W(B('Before','Five manual files, many lookups, hard to audit.'),B('Goal','Load the files, hit refresh, get at-risk products and a markdown suggestion.'))+M('Illustrative outlet retailer, invented thresholds.'),
+ H('The flow')+F([['Stock','sku, quantity, cost, price'],['Product','brand, season, category'],['Join','one clean table on sku'],['Rules','risk level and markdown band'],['Output','review-ready table']]),
+ H('The pipeline in M')+C("let\n    Stock = Table.SelectColumns(StockRaw, {'sku', 'qty', 'cost', 'price', 'weeks_cover'}),\n    Joined = Table.NestedJoin(Stock, 'sku', Product, 'sku', 'p', JoinKind.LeftOuter),\n    Expanded = Table.ExpandTableColumn(Joined, 'p', {'brand', 'season'}),\n    Risk = Table.AddColumn(Expanded, 'risk', each\n        if [weeks_cover] > 26 then 'High'\n        else if [weeks_cover] > 13 then 'Medium' else 'Low'),\n    Markdown = Table.AddColumn(Risk, 'markdown_pct', each\n        if [risk] = 'High' then 0.5\n        else if [risk] = 'Medium' then 0.3 else 0)\nin\n    Markdown")+M('Rules sit in two visible steps, so anyone can read and change them.'),
+ H('The output')+T(['sku','brand','weeks cover','risk','markdown'],[['A-101','Brand A','31',pl('p-on','High'),'50%'],['B-205','Brand B','18',pl('p-om','Medium'),'30%'],['C-310','Brand C','6',pl('p-st','Low'),'0%']])+M('Sample rows are invented.'),
+ H('What I took from it')+B('Watch out for',['Missing product matches silently drop rows. Count after every join.','Keep thresholds in one place.','Refresh beats rebuild: nothing to retype.'])
+]},
+lic:{t:'Weekly licensing data, automated',s:[
+ H('Licenses depend on clean store data')+P('Partner brands receive licenses for stores that qualify. Eligibility depends on store status, shelf facings and brand mapping.')+W(B('Before','Extracts prepared by hand every week, with rules living in someone\'s head.'),B('Goal','Rules written once, run on a schedule, delivered to a shared folder.'))+M('Concept demo: invented schema and brands.'),
+ H('The flow')+F([['Facings','shelf data by store and brand'],['Stores','active stores only'],['Brand map','brand to vendor'],['Rules','facings above zero, closed week'],['Export','weekly file, shared folder']]),
+ H('Rules in SQL, schedule in Python')+C("SELECT s.store_id, m.vendor, SUM(f.facings) AS facings\nFROM facings f\nJOIN stores s ON s.store_id = f.store_id AND s.is_active = 1\nJOIN brand_map m ON m.brand = f.brand\nWHERE f.fiscal_week = :week\nGROUP BY s.store_id, m.vendor\nHAVING SUM(f.facings) > 0;\n\n# runs every Monday via the scheduler\ndf = pd.read_sql(QUERY, conn, params={'week': last_closed_week})\ndf.to_excel(shared / ('licensing_' + last_closed_week + '.xlsx'), index=False)"),
+ H('What I took from it')+B('Watch out for',['Fiscal weeks differ from calendar weeks.','Unmapped brands vanish silently in an inner join.','Eligibility is a business rule: keep it readable.'])
+]},
+bot:{t:'Teaching an AI analyst two codes',s:[
+ H('The chatbot kept mixing two codes')+P('An internal chatbot turns business questions into SQL. When people asked about a product code, it sometimes returned the wrong one.')+W(B('Symptom','Right-looking tables, wrong numbers. Nothing crashed.'),B('My job','Find out why, fix the cause, and prove the fix with tests.'))+M('Generic example, no real system or data.'),
+ H('How I debugged it')+F([['Question','real requests from users'],['SQL','read what the bot wrote'],['Diagnose','profile the columns'],['Root cause','two codes, one definition'],['Fix and retest','rewrite, run the set again']])+P('Reading the generated SQL showed which column was used. Profiling the columns showed why that was an easy mistake.'),
+ H('Profiling the data')+C("SELECT CASE WHEN code RLIKE '^[0-9]+$' THEN 'serial'\n            ELSE 'model' END AS kind,\n       COUNT(*) AS n,\n       MIN(LENGTH(code)) AS min_len,\n       MAX(LENGTH(code)) AS max_len\nFROM product_dim\nGROUP BY 1;")+M('Profiling supports the diagnosis only: code shape is a hint, not a definition.')+W(B('Before','code: the product code.'),B('After','serial_code: digits only. model_code: letters and digits. Never use one when the other is asked. If unclear, ask.')),
+ H('Why it works')+P('An AI analyst is only as good as the definitions behind it. Sharper instructions made one ambiguous word into two clear ones.')+B('Test loop',['Collect real questions.','Run them and check the SQL.','Log every miss with its cause.','Change one instruction, then rerun everything.'])
+]}};
+
+var dlg=document.getElementById('deck'),track=document.getElementById('track'),dots=document.getElementById('dots'),prev=document.getElementById('prev'),next=document.getElementById('next'),i=0,slides=[];
+function hl(el){var t=el.textContent.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+ t=t.replace(/('[^']*')/g,'<span class="str">$1</span>').replace(/\b(WITH|AS|SELECT|FROM|WHERE|GROUP BY|COUNT|SUM|CASE|WHEN|THEN|ELSE|END|MAX|MIN|LENGTH|RLIKE|def|return|raise|if|for|in|not|all|let|each|else|then|and)\b/g,'<span class="kw">$1</span>').replace(/(--[^\n]*)/g,'<span class="com">$1</span>');
+ el.innerHTML=t}
+function go(n){i=Math.max(0,Math.min(slides.length-1,n));track.style.transform='translateX(-'+i*100+'%)';
+ slides.forEach(function(s,k){s.classList.toggle('act',k===i)});
+ [].forEach.call(dots.children,function(d,k){d.classList.toggle('on',k===i)});
+ prev.disabled=i===0;next.disabled=i===slides.length-1}
+function openDeck(k){var d=D[k];document.getElementById('dt').textContent=d.t;
+ track.innerHTML=d.s.map(function(x){return '<section class="slide">'+x+'</section>'}).join('');
+ slides=[].slice.call(track.children);dots.innerHTML=slides.map(function(){return '<i></i>'}).join('');
+ [].forEach.call(track.querySelectorAll('pre'),hl);dlg.showModal();go(0)}
+[].forEach.call(document.querySelectorAll('[data-deck]'),function(b){b.onclick=function(){openDeck(b.dataset.deck)}});
+document.getElementById('close').onclick=function(){dlg.close()};
+dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+prev.onclick=function(){go(i-1)};next.onclick=function(){go(i+1)};
+dlg.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(i+1);if(e.key==='ArrowLeft')go(i-1)});
+[].forEach.call(document.querySelectorAll('.chip[data-f]'),function(c){c.onclick=function(){
+ [].forEach.call(document.querySelectorAll('.chip[data-f]'),function(x){x.setAttribute('aria-pressed',x===c)});
+ [].forEach.call(document.querySelectorAll('.proj'),function(r){r.style.display=(c.dataset.f==='all'||r.dataset.cat===c.dataset.f)?'':'none'})}});
+
+/* roadmap */
+var L={work:'Work',edu:'Study',cert:'Certification'},
+RM=[
+['2021 – 2024','BSc in Economics','University of Pavia','edu','Foundations of the path. Alongside it: university tutoring.'],
+['Sep – Nov 2023','Business Analyst intern','First analysis role','work','First analysis role, during the bachelor.'],
+['Nov 2023 – Jun 2025','Consultant to Deputy Manager','JECO Pavia','work','SME consulting projects, led a team of 12.'],
+['2023','Google Analytics and Ads Measurement','Google qualifications','cert',''],
+['Mar – Jul 2024','FS Risk & Compliance','Protiviti','work','Banking process analysis and redesign support.'],
+['2024 – Nov 2026','MSc Business Intelligence & Analytics','ESC Clermont Business School','edu','Double degree, together with the MSc in Strategic Management at Pavia.'],
+['2024 – Nov 2026','MSc Strategic Management','University of Pavia','edu','The other half of the double degree.'],
+['Sep 2024 – Feb 2026','Programs Coordinator to B2C & Strategy VP','AIESEC','work','Customer acquisition strategy, team of 28, KPI dashboards.'],
+['Aug – Nov 2025','Startup analysis externship','HP Tech Ventures','work','Deal sourcing and startup screening.'],
+['2025','Mastercard Advisors & Consulting','Forage job simulation','cert','Job simulation, not a certification.'],
+['2025','EF SET English, 71/100','Level C2','cert',''],
+['Nov 2025 – Feb 2026','People Analytics externship','Amazon','work','Analysis of 3,000+ feedback records to find operational bottlenecks.'],
+['Jan – Apr 2026','Category Management','EssilorLuxottica','work','Roadmap consolidation, Power Query tools and a pricing analysis.'],
+['Apr 2026 – now','BI & Data Analytics','EssilorLuxottica','work','SQL, Python, Power Query, retail analytics, data quality and AI testing. <a href="#/projects">See the projects</a>.'],
+['2026','Power BI Data Analyst Associate','Microsoft','cert',''],
+['2026','Query and modify data with Transact-SQL','Microsoft','cert',''],
+['2026','McKinsey.org Forward Program','McKinsey.org','cert','']
+],tl=document.getElementById('tl');
+tl.innerHTML=RM.map(function(r,k){return '<li data-t="'+r[3]+'"><span class="dot" aria-hidden="true">'+String.fromCharCode(65+k)+'</span><button class="tn" aria-expanded="false"><small>'+r[0]+' · '+L[r[3]]+'</small><b>'+r[1]+'</b><span class="sub">'+r[2]+'</span>'+(r[4]?'<span class="more">'+r[4]+'</span>':'')+'</button></li>'}).join('');
+tl.onclick=function(e){var b=e.target.closest('.tn');if(b&&!e.target.closest('a'))b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')!=='true')};
+[].forEach.call(document.querySelectorAll('.rchip'),function(c){c.onclick=function(){
+ [].forEach.call(document.querySelectorAll('.rchip'),function(x){x.setAttribute('aria-pressed',x===c)});
+ [].forEach.call(tl.children,function(li){li.classList.toggle('hide',c.dataset.r!=='all'&&li.dataset.t!==c.dataset.r)})}});
+
+/* router */
+var V=['home','projects','roadmap'],TT={home:'Fabio Saglio – BI & Data Analytics',projects:'Projects · Fabio Saglio',roadmap:'Roadmap · Fabio Saglio'};
+function route(){var v=(location.hash.match(/^#\/(\w+)/)||[])[1];if(V.indexOf(v)<0)v='home';
+ [].forEach.call(document.querySelectorAll('[data-view]'),function(s){s.classList.toggle('on',s.dataset.view===v)});
+ [].forEach.call(document.querySelectorAll('nav a[data-v]'),function(a){if(a.dataset.v===v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+ document.title=TT[v];window.scrollTo(0,0)}
+document.documentElement.classList.add('js');
+addEventListener('hashchange',route);route();
+})();
+</script>
+</body>
+</html>
